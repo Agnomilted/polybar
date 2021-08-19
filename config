@@ -1,0 +1,181 @@
+; introduction
+
+[colors]
+background = ${xrdb:background:#2f2f2f}
+foreground = ${xrdb:foreground:#ebdbb2}
+background-alt = ${xrdb:background:#2f2f2f}
+foreground-alt = ${xrdb:foreground:#ebdbb2}
+; background = #2f2f2f
+; background-alt = #504945
+; foreground = #ebdbb2
+; foreground-alt = #ebdbb2
+underline = #ebdbb2
+primary = #ebdbb2
+secondary = #ebdbb2
+alert = #bd2c40
+
+[bar/bspwm]
+width = 100%
+height = 30
+
+bottom = false
+
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+
+padding-left = 0
+padding-right = 0
+
+modules-left = bspwm xmenu-bspwm
+modules-center = xwindow
+modules-right = battery date
+
+enable-ipc = true
+
+font-0 = xft:Noto Sans:size=12:antialias=true:hinting:true
+
+separator = " | "
+
+[bar/openbox]
+width = 100%
+height = 30
+
+bottom = true
+
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+
+padding-left = 0
+padding-right = 0
+
+modules-left = xmenu-openbox
+modules-center = xwindow
+modules-right = battery date
+
+enable-ipc = true
+
+font-0 = xft:Noto Sans:size=12:antialias=true:hinting:true
+
+separator = " | "
+
+
+[module/bspwm]
+type = internal/bspwm
+
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+label-occupied = %index%
+label-occupied-padding = 2
+
+label-urgent = %index%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+label-empty = %index%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 2
+
+[module/date]
+type = internal/date
+interval = 30
+
+date = %a %d %b
+date-alt = " %Y-%m-%d"
+
+time = "%I:%M %p "
+time-alt = %H:%M:%S
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = ${colors.underline}
+
+label = %date% %time%
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+format-underline = ${colors.underline}
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.secondary}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.foreground-alt}
+
+
+[module/xwindow]
+type = internal/xwindow
+format = <label>
+label = %title%
+format-background = ${colors.background}
+format-foreground = ${colors.foreground}
+
+
+[module/xmenu-bspwm]
+type = custom/script
+click-left = /home/agnom/.config/bspwm/xmenu.sh
+exec = echo " Menu"
+
+[module/xmenu-openbox]
+type = custom/script
+click-left = /home/agnom/.config/openbox/xmenu.sh
+exec = echo " Menu"
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = #ebdbb2
+
+format-discharging = <animation-discharging> <label-discharging>
+format-discharging-underline = ${self.format-charging-underline}
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = ${self.format-charging-underline}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-foreground = ${colors.foreground-alt}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-framerate = 750
+
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-foreground = ${colors.foreground-alt}
+animation-discharging-framerate = 750
+
